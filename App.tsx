@@ -1,8 +1,17 @@
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
+import { ImageBackground, StyleSheet, Text, View } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./screens/HomeScreen";
 import DualGameScreen from "./screens/DualGameScreen";
 import { useFonts } from "expo-font";
+
+const navTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: "transparent",
+  },
+};
 
 const Stack = createNativeStackNavigator();
 
@@ -15,7 +24,11 @@ const App = () => {
 
 export default function App() {
   return (
-    <NavigationContainer>
+    <ImageBackground
+      source={require("numdu/assets/images/background-image.png")}
+      style={{ flex: 1 }}
+    >
+      <NavigationContainer theme={navTheme}>
       <Stack.Navigator>
         <Stack.Screen
           name="DualGame"
@@ -29,6 +42,7 @@ export default function App() {
         />
       </Stack.Navigator>
     </NavigationContainer>
+    </ImageBackground>
   );
 };
 
