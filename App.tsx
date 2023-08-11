@@ -1,5 +1,12 @@
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import HomeScreen from "./screens/HomeScreen";
+import DualGameScreen from "./screens/DualGameScreen";
 import { useFonts } from "expo-font";
 
+const Stack = createNativeStackNavigator();
+
+const App = () => {
   const [fontsLoaded] = useFonts({
     rubik: require("numdu/assets/fonts/Rubik-Regular.ttf"),
     rubikMedium: require("numdu/assets/fonts/Rubik-Medium.ttf"),
@@ -8,12 +15,24 @@ import { useFonts } from "expo-font";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="DualGame"
+          component={DualGameScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{ headerShown: false }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
+
+export default App;
 
 const styles = StyleSheet.create({
   container: {
