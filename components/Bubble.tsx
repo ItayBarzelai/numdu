@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
-import COLORS from "../../colors";
-import WaitingDots from "../WaitingDots";
+import COLORS from "../colors";
+import WaitingDots from "./WaitingDots";
 
 interface Props {
   nickname: string;

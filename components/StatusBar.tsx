@@ -1,6 +1,6 @@
 import { Animated, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useRef, useState } from "react";
-import COLORS from "../../colors";
+import COLORS from "../colors";
 
 interface Props {
   status: "guessing" | "countdown";

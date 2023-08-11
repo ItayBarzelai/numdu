@@ -1,6 +1,6 @@
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import React from "react";
-import COLORS from "../../colors";
+import COLORS from "../colors";
 
 interface Props {
   score: number;

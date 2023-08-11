@@ -1,8 +1,8 @@
 import { Pressable, StyleSheet, Text, View, Image } from "react-native";
 import React from "react";
-import PrimaryButton from "../../components/buttons/PrimaryButton";
-import ICONS from "../../icons";
-import COLORS from "../../colors";
+import PrimaryButton from "../components/buttons/PrimaryButton";
+import ICONS from "../icons";
+import COLORS from "../colors";
 
 const HomeScreen = () => {
   const handleUser = () => {

@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import React, { Children } from "react";
 import { Modal } from "react-native";
-import COLORS from "../../../colors";
+import COLORS from "../../colors";
 
 interface Props {
   visible: boolean;

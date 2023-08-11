@@ -1,12 +1,12 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
-import BackArrow from "../../components/BackArrow";
-import QuestionCard from "../../components/QuestionCard";
-import StatusBar from "../../components/StatusBar";
-import Bubble from "../../components/Bubble";
-import ScoreDots from "../../components/ScoreDots";
-import Keypad from "../../components/Keypad";
-import ExitModal from "../../components/modals/ExitModal";
+import BackArrow from "../components/BackArrow";
+import QuestionCard from "../components/QuestionCard";
+import StatusBar from "../components/StatusBar";
+import Bubble from "../components/Bubble";
+import ScoreDots from "../components/ScoreDots";
+import Keypad from "../components/Keypad";
+import ExitModal from "../components/modals/ExitModal";
 
 const DualGameScreen = () => {
   const selfNickname = "cheese23";

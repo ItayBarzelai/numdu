@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import BlankModal from "../BlankModal";
-import COLORS from "../../../colors";
-import PrimaryButton from "../../buttons/PrimaryButton";
-import TertiaryButton from "../../buttons/tertiaryButton";
+import BlankModal from "./BlankModal";
+import COLORS from "../../colors";
+import PrimaryButton from "../buttons/PrimaryButton";
+import TertiaryButton from "../buttons/TertiaryButton";
 
 interface Props {
   visible: boolean;
