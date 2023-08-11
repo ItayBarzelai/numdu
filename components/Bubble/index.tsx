@@ -5,7 +5,7 @@ import WaitingDots from "../WaitingDots";
 
 interface Props {
   nickname: string;
-  guess: number | "waiting" | "sent";
+  guess: string | "waiting" | "sent";
   invert?: boolean;
 }
 
@@ -13,9 +13,7 @@ const Bubble = ({ nickname, guess, invert = false }: Props) => {
   const animation = useRef(null);
 
   const bubbleContent = () => {
-    if (typeof guess === "number")
-      return <Text style={styles.guessText}>{guess.toLocaleString()}</Text>;
-    else if (guess === "waiting") return <WaitingDots scale={0.5} />;
+    if (guess === "waiting") return <WaitingDots scale={0.5} />;
     else if (guess === "sent")
       return (
         <Image
@@ -23,6 +21,7 @@ const Bubble = ({ nickname, guess, invert = false }: Props) => {
           source={require("numdu/assets/images/airplane.png")}
         />
       );
+    else return <Text style={styles.guessText}>{guess}</Text>;
   };
 
   return (
