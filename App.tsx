@@ -1,5 +1,10 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useFonts } from "expo-font";
+
+  const [fontsLoaded] = useFonts({
+    rubik: require("numdu/assets/fonts/Rubik-Regular.ttf"),
+    rubikMedium: require("numdu/assets/fonts/Rubik-Medium.ttf"),
+    rubikBold: require("numdu/assets/fonts/Rubik-Bold.ttf"),
+  });
 
 export default function App() {
   return (
