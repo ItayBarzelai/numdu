@@ -7,6 +7,7 @@ import DualGameScreen from "./screens/DualGameScreen";
 import HomeScreen from "./screens/HomeScreen";
 import useFonts from "./useFonts";
 import PinLobbyScreen from "./screens/PinLobbyScreen";
+import DualWinningScreen from "./screens/DualWinningScreen";
 
 const navTheme = {
   ...DefaultTheme,
@@ -54,6 +55,11 @@ const App = () => {
             <Stack.Screen
               name="DualGame"
               component={DualGameScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="DualWinning"
+              component={DualWinningScreen}
               options={{ headerShown: false }}
             />
           </Stack.Navigator>

@@ -6,6 +6,7 @@ const ICONS = {
     bowAndArrow: require('numdu/assets/images/bow-and-arrow.png'),
     coin: require('numdu/assets/images/coin.png'),
     friend: require('numdu/assets/images/friend.png'),
+    addFriend: require('numdu/assets/images/add-friend.png'),
     global: require('numdu/assets/images/global.png'),
     group: require('numdu/assets/images/group.png'),
     lightning: require('numdu/assets/images/lightning.png'),
