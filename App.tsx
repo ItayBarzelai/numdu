@@ -22,26 +22,25 @@ const App = () => {
     rubikBold: require("numdu/assets/fonts/Rubik-Bold.ttf"),
   });
 
-export default function App() {
   return (
     <ImageBackground
       source={require("numdu/assets/images/background-image.png")}
       style={{ flex: 1 }}
     >
       <NavigationContainer theme={navTheme}>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="DualGame"
-          component={DualGameScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="DualGame"
+            component={DualGameScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{ headerShown: false }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
     </ImageBackground>
   );
 };
@@ -51,8 +50,8 @@ export default App;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
