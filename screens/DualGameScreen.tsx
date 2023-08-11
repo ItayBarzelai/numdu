@@ -19,7 +19,7 @@ const DualGameScreen = () => {
 
   const handleQuit = () => {};
   const handleGoBack = () => {
-    setExitModalVisible(true);
+    setExitModalVisible(false);
   };
   const handleSend = () => {};
 
