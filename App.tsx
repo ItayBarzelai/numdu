@@ -1,9 +1,11 @@
-import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
-import { ImageBackground, StyleSheet, Text, View } from "react-native";
+import { DefaultTheme, NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import HomeScreen from "./screens/HomeScreen";
+import AppLoading from "expo-app-loading";
+import React, { useState } from "react";
+import { ImageBackground, StyleSheet } from "react-native";
 import DualGameScreen from "./screens/DualGameScreen";
-import { useFonts } from "expo-font";
+import HomeScreen from "./screens/HomeScreen";
+import useFonts from "./useFonts";
 
 const navTheme = {
   ...DefaultTheme,
@@ -16,33 +18,42 @@ const navTheme = {
 const Stack = createNativeStackNavigator();
 
 const App = () => {
-  const [fontsLoaded] = useFonts({
-    rubik: require("numdu/assets/fonts/Rubik-Regular.ttf"),
-    rubikMedium: require("numdu/assets/fonts/Rubik-Medium.ttf"),
-    rubikBold: require("numdu/assets/fonts/Rubik-Bold.ttf"),
-  });
+  const [IsReady, SetIsReady] = useState(false);
 
-  return (
-    <ImageBackground
-      source={require("numdu/assets/images/background-image.png")}
-      style={{ flex: 1 }}
-    >
-      <NavigationContainer theme={navTheme}>
-        <Stack.Navigator>
-          <Stack.Screen
-            name="DualGame"
-            component={DualGameScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Home"
-            component={HomeScreen}
-            options={{ headerShown: false }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </ImageBackground>
-  );
+  const LoadFonts = async () => {
+    await useFonts();
+  };
+
+  if (!IsReady)
+    return (
+      <AppLoading
+        startAsync={LoadFonts}
+        onFinish={() => SetIsReady(true)}
+        onError={() => {}}
+      />
+    );
+  else
+    return (
+      <ImageBackground
+        source={require("numdu/assets/images/background-image.png")}
+        style={{ flex: 1 }}
+      >
+        <NavigationContainer theme={navTheme}>
+          <Stack.Navigator>
+            <Stack.Screen
+              name="DualGame"
+              component={DualGameScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Home"
+              component={HomeScreen}
+              options={{ headerShown: false }}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </ImageBackground>
+    );
 };
 
 export default App;
