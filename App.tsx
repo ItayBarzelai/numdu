@@ -6,6 +6,7 @@ import { ImageBackground, StyleSheet } from "react-native";
 import DualGameScreen from "./screens/DualGameScreen";
 import HomeScreen from "./screens/HomeScreen";
 import useFonts from "./useFonts";
+import PinLobbyScreen from "./screens/PinLobbyScreen";
 
 const navTheme = {
   ...DefaultTheme,
@@ -41,13 +42,18 @@ const App = () => {
         <NavigationContainer theme={navTheme}>
           <Stack.Navigator>
             <Stack.Screen
-              name="DualGame"
-              component={DualGameScreen}
+              name="Home"
+              component={HomeScreen}
               options={{ headerShown: false }}
             />
             <Stack.Screen
-              name="Home"
-              component={HomeScreen}
+              name="PinLobby"
+              component={PinLobbyScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="DualGame"
+              component={DualGameScreen}
               options={{ headerShown: false }}
             />
           </Stack.Navigator>
@@ -57,12 +63,3 @@ const App = () => {
 };
 
 export default App;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
