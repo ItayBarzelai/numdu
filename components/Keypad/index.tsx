@@ -5,17 +5,16 @@ import Key from "./Key";
 interface Props {
   value: string;
   setValue: (value: string) => void;
+  onPressSend: () => void;
 }
 
-const Keypad = ({ value, setValue }: Props) => {
-  const handleSend = () => {};
-
+const Keypad = ({ value, setValue, onPressSend }: Props) => {
   const handleBackpace = () => {
     setValue(value.slice(0, -1));
   };
 
   const handlePress = (content: string | "send" | "backspace") => {
-    if (content === "send") handleSend();
+    if (content === "send") onPressSend();
     else if (content === "backspace") handleBackpace();
     else if (value.length < 7) setValue(value + content);
   };
