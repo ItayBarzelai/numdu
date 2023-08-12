@@ -39,7 +39,13 @@ const DualModal = ({ visible, setVisible }: Props) => {
       </View>
       <PrimaryButton text="CREATE" onPress={handleStart} />
       <View style={styles.divider} />
-      <Input value={code} setValue={setCode} />
+      <Input
+        placeholder="Enter PIN"
+        value={code}
+        setValue={setCode}
+        maxLength={6}
+        inputMode="numeric"
+      />
       <PrimaryButton text="JOIN" onPress={handleJoin} />
     </BlankModal>
   );
