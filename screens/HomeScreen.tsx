@@ -1,40 +1,31 @@
-import { Pressable, StyleSheet, Text, View, Image } from "react-native";
-import React from "react";
+import React, { useContext, useState } from "react";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { SocketContext } from "../App";
+import COLORS from "../colors";
 import PrimaryButton from "../components/buttons/PrimaryButton";
 import ICONS from "../icons";
-import COLORS from "../colors";
+import DualModal from "../components/modals/DualModal";
 
 const HomeScreen = () => {
-  const handleUser = () => {
-    console.log("handleUser");
-  };
-  const handleCoin = () => {
-    console.log("handleCoin");
-  };
-  const handleLightning = () => {
-    console.log("handleLightning");
-  };
-  const handleQuickPlay = () => {
-    console.log("handleQuickPlay");
-  };
+  const socket = useContext(SocketContext);
+  const [dualModalVisible, setDualModalVisible] = useState(false);
+
+  const handleUser = () => {};
+  const handleCoin = () => {};
+  const handleLightning = () => {};
+  const handleQuickPlay = () => {};
   const handleChallangeAFriend = () => {
-    console.log("handleChallangeAFriend");
+    setDualModalVisible(true);
   };
-  const handleGroup = () => {
-    console.log("handleGroup");
-  };
-  const handlePractice = () => {
-    console.log("handlePractice");
-  };
-  const handleLeaderBoard = () => {
-    console.log("handleLeaderBoard");
-  };
-  const handleSettings = () => {
-    console.log("handleSettings");
-  };
+  const handleGroup = () => {};
+  const handlePractice = () => {};
+  const handleLeaderBoard = () => {};
+  const handleSettings = () => {};
 
   return (
     <View style={styles.container}>
+      <DualModal visible={dualModalVisible} setVisible={setDualModalVisible} />
+
       <View style={styles.bar}>
         <Pressable onPress={handleUser}>
           <Image

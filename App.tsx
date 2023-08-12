@@ -1,13 +1,14 @@
 import { DefaultTheme, NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import AppLoading from "expo-app-loading";
-import React, { useState } from "react";
-import { ImageBackground, StyleSheet } from "react-native";
+import React, { createContext, useEffect, useState } from "react";
+import { ImageBackground } from "react-native";
 import DualGameScreen from "./screens/DualGameScreen";
-import HomeScreen from "./screens/HomeScreen";
-import useFonts from "./useFonts";
-import PinLobbyScreen from "./screens/PinLobbyScreen";
 import DualWinningScreen from "./screens/DualWinningScreen";
+import HomeScreen from "./screens/HomeScreen";
+import PinLobbyScreen from "./screens/PinLobbyScreen";
+import { socket } from "./socket";
+import useFonts from "./useFonts";
 
 const navTheme = {
   ...DefaultTheme,
@@ -17,14 +18,39 @@ const navTheme = {
   },
 };
 
+export const SocketContext = createContext(socket);
+
 const Stack = createNativeStackNavigator();
 
 const App = () => {
   const [IsReady, SetIsReady] = useState(false);
-
   const LoadFonts = async () => {
     await useFonts();
   };
+
+  const [isConnected, setIsConnected] = useState(socket.connected);
+
+  useEffect(() => {
+    console.log(isConnected);
+
+    const onConnect = () => {
+      console.log("Connect: " + socket.id);
+      setIsConnected(true);
+    };
+
+    const onDisconnect = () => {
+      console.log("Disconnect: " + socket.id);
+      setIsConnected(false);
+    };
+
+    socket.on("connect", onConnect);
+    socket.on("disconnect", onDisconnect);
+
+    return () => {
+      socket.off("connect", onConnect);
+      socket.off("disconnect", onDisconnect);
+    };
+  }, []);
 
   if (!IsReady)
     return (
@@ -40,30 +66,32 @@ const App = () => {
         source={require("numdu/assets/images/background-image.png")}
         style={{ flex: 1 }}
       >
-        <NavigationContainer theme={navTheme}>
-          <Stack.Navigator>
-            <Stack.Screen
-              name="Home"
-              component={HomeScreen}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="PinLobby"
-              component={PinLobbyScreen}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="DualGame"
-              component={DualGameScreen}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="DualWinning"
-              component={DualWinningScreen}
-              options={{ headerShown: false }}
-            />
-          </Stack.Navigator>
-        </NavigationContainer>
+        <SocketContext.Provider value={socket}>
+          <NavigationContainer theme={navTheme}>
+            <Stack.Navigator>
+              <Stack.Screen
+                name="Home"
+                component={HomeScreen}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="PinLobby"
+                component={PinLobbyScreen}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="DualGame"
+                component={DualGameScreen}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="DualWinning"
+                component={DualWinningScreen}
+                options={{ headerShown: false }}
+              />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </SocketContext.Provider>
       </ImageBackground>
     );
 };
