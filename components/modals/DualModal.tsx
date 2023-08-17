@@ -1,10 +1,11 @@
 import { StyleSheet, Text, View, Image } from "react-native";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import BlankModal from "./BlankModal";
 import ButtonGroup from "../ButtonGroup";
 import PrimaryButton from "../buttons/PrimaryButton";
 import COLORS from "../../colors";
 import Input from "../Input";
+import { SocketContext } from "../../socketContext";
 
 interface Props {
   visible: boolean;
@@ -12,6 +13,7 @@ interface Props {
 }
 
 const DualModal = ({ visible, setVisible }: Props) => {
+  const socket = useContext(SocketContext);
   const options = [
     { label: "100", value: 100 },
     { label: "200", value: 200 },

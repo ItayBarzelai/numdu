@@ -1,14 +1,14 @@
 import { DefaultTheme, NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import AppLoading from "expo-app-loading";
-import React, { createContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ImageBackground } from "react-native";
 import DualGameScreen from "./screens/DualGameScreen";
 import DualWinningScreen from "./screens/DualWinningScreen";
 import HomeScreen from "./screens/HomeScreen";
 import PinLobbyScreen from "./screens/PinLobbyScreen";
-import { socket } from "./socket";
 import useFonts from "./useFonts";
+import { SocketContext } from "./socketContext";
 
 const navTheme = {
   ...DefaultTheme,
@@ -18,7 +18,7 @@ const navTheme = {
   },
 };
 
-export const SocketContext = createContext(socket);
+// export const SocketContext = createContext(socket);
 
 const Stack = createNativeStackNavigator();
 
@@ -28,11 +28,11 @@ const App = () => {
     await useFonts();
   };
 
+  const socket = useContext(SocketContext);
+
   const [isConnected, setIsConnected] = useState(socket.connected);
 
   useEffect(() => {
-    console.log(isConnected);
-
     const onConnect = () => {
       console.log("Connect: " + socket.id);
       setIsConnected(true);

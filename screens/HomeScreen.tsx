@@ -1,13 +1,16 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
-import { SocketContext } from "../App";
+import { SocketContext } from "../socketContext";
 import COLORS from "../colors";
 import PrimaryButton from "../components/buttons/PrimaryButton";
 import ICONS from "../icons";
 import DualModal from "../components/modals/DualModal";
+import { useNavigation } from "@react-navigation/native";
 
 const HomeScreen = () => {
   const socket = useContext(SocketContext);
+  const navigation = useNavigation();
+
   const [dualModalVisible, setDualModalVisible] = useState(false);
 
   const handleUser = () => {};

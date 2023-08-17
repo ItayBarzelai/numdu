@@ -1,11 +1,11 @@
 import { Image, StyleSheet, Text, View } from "react-native";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ExitModal from "../components/modals/ExitModal";
 import BackArrow from "../components/BackArrow";
 import COLORS from "../colors";
+import { SocketContext } from "../socketContext";
 
-const PinLobbyScreen = () => {
-  const [gameCode, setGameCode] = useState(0);
+  const socket = useContext(SocketContext);
   const [exitModalVisible, setExitModalVisible] = useState(false);
 
   const handleQuit = () => {};
