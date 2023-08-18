@@ -8,9 +8,6 @@ interface Props {
 }
 
 const QuestionCard = ({ questionText, answerText }: Props) => {
-  // const questionText = "How many seconds are there in an hour?";
-  // const answerText = 3600;
-
   const bottomVal = useRef(new Animated.Value(85)).current;
 
   const bottomAnimationReveal = Animated.timing(bottomVal, {
@@ -31,7 +28,6 @@ const QuestionCard = ({ questionText, answerText }: Props) => {
   };
 
   useEffect(() => {
-    console.log("a");
     if (answerText === "") bottomAnimationHide.start();
     else bottomAnimationReveal.start();
   }, [answerText]);
