@@ -13,6 +13,7 @@ const ButtonGroup = ({ options, selected, setSelected }: Props) => {
     <View style={styles.container}>
       {options.map((option) => (
         <Pressable
+          key={option.value}
           style={[
             styles.optionContainer,
             {
