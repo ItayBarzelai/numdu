@@ -9,6 +9,7 @@ import HomeScreen from "./screens/HomeScreen";
 import PinLobbyScreen from "./screens/PinLobbyScreen";
 import useFonts from "./useFonts";
 import { SocketContext } from "./socketContext";
+import { RootStackParamList } from "./root.routes";
 
 const navTheme = {
   ...DefaultTheme,
@@ -18,9 +19,7 @@ const navTheme = {
   },
 };
 
-// export const SocketContext = createContext(socket);
-
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const App = () => {
   const [IsReady, SetIsReady] = useState(false);
