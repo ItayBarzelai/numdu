@@ -5,13 +5,14 @@ import COLORS from "../colors";
 import PrimaryButton from "../components/buttons/PrimaryButton";
 import ICONS from "../icons";
 import DualModal from "../components/modals/DualModal";
-import { useNavigation } from "@react-navigation/native";
+import PracticeModal from "../components/modals/PracticeModal";
 
 const HomeScreen = () => {
   const socket = useContext(SocketContext);
   const navigation = useNavigation();
 
   const [dualModalVisible, setDualModalVisible] = useState(false);
+  const [practiceModalVisible, setPracticeModalVisible] = useState(false);
 
   const handleUser = () => {};
   const handleCoin = () => {};
@@ -21,13 +22,19 @@ const HomeScreen = () => {
     setDualModalVisible(true);
   };
   const handleGroup = () => {};
-  const handlePractice = () => {};
+  const handlePractice = () => {
+    setPracticeModalVisible(true);
+  };
   const handleLeaderBoard = () => {};
   const handleSettings = () => {};
 
   return (
     <View style={styles.container}>
       <DualModal visible={dualModalVisible} setVisible={setDualModalVisible} />
+      <PracticeModal
+        visible={practiceModalVisible}
+        setVisible={setPracticeModalVisible}
+      />
 
       <View style={styles.bar}>
         <Pressable onPress={handleUser}>

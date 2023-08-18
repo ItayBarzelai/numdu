@@ -40,7 +40,6 @@ export default ButtonGroup;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: COLORS.SECONDARY,
     display: "flex",
     flexDirection: "row",
