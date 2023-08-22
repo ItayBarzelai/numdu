@@ -5,9 +5,10 @@ import COLORS from "../colors";
 interface Props {
   questionText: string;
   answerText: string;
+  revealAnswer: boolean;
 }
 
-const QuestionCard = ({ questionText, answerText }: Props) => {
+const QuestionCard = ({ questionText, answerText, revealAnswer }: Props) => {
   const bottomVal = useRef(new Animated.Value(85)).current;
 
   const bottomAnimationReveal = Animated.timing(bottomVal, {
@@ -28,9 +29,9 @@ const QuestionCard = ({ questionText, answerText }: Props) => {
   };
 
   useEffect(() => {
-    if (answerText === "") bottomAnimationHide.start();
-    else bottomAnimationReveal.start();
-  }, [answerText]);
+    if (revealAnswer) bottomAnimationReveal.start();
+    else bottomAnimationHide.start();
+  }, [revealAnswer]);
 
   return (
     <View style={styles.container}>

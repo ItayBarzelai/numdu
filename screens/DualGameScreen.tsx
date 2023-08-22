@@ -15,9 +15,10 @@ const DualGameScreen = () => {
   const questionText = "How many seconds are there in an hour?";
   const answerText = "3600";
   const [status, setStatus] = useState<"guessing" | "countdown">("guessing");
-  const [exitModalVisible, setExitModalVisible] = useState(true);
+  const [revealAnswer, setRevealAnswer] = useState(false);
 
-  const handleQuit = () => {};
+    socket.off("end-countdown");
+    socket.off("end-game");
   const handleGoBack = () => {
     setExitModalVisible(false);
   };
@@ -27,6 +28,12 @@ const DualGameScreen = () => {
     if (guess === "") return "0";
     else return parseInt(guess).toLocaleString();
   };
+    socket.on("end-game", (payload) => {
+      if (payload.error !== "") return;
+      navigation.navigate("DualWinning", payload.winners);
+    });
+      socket.off("end-countdown");
+      socket.off("end-game");
 
   return (
     <View style={styles.container}>
