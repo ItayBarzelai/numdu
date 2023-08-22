@@ -5,11 +5,13 @@ import COLORS from "../colors";
 import PrimaryButton from "../components/buttons/PrimaryButton";
 import ICONS from "../icons";
 import DualModal from "../components/modals/DualModal";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import PracticeModal from "../components/modals/PracticeModal";
 
 const HomeScreen = () => {
   const socket = useContext(SocketContext);
   const navigation = useNavigation();
+  let players: any[] = [];
 
   const [dualModalVisible, setDualModalVisible] = useState(false);
   const [practiceModalVisible, setPracticeModalVisible] = useState(false);
@@ -19,6 +21,7 @@ const HomeScreen = () => {
   const handleLightning = () => {};
   const handleQuickPlay = () => {};
   const handleChallangeAFriend = () => {
+    setDualModalVisible(false);
     setDualModalVisible(true);
   };
   const handleGroup = () => {};
@@ -27,6 +30,48 @@ const HomeScreen = () => {
   };
   const handleLeaderBoard = () => {};
   const handleSettings = () => {};
+
+  useEffect(() => {
+    socket.on("players", (payload) => {
+      players = payload.players;
+    });
+
+    socket.on(
+      "create-invite-code",
+      (payload: { error: string; code: number }) => {
+        if (payload.error !== "") return;
+        setDualModalVisible(false);
+        navigation.navigate("PinLobby", { code: payload.code });
+      }
+    );
+
+    socket.on("join-invite-code", (payload: { error: string }) => {
+      if (payload.error !== "") return;
+    });
+
+    socket.on("start-game", (payload: { error: string }) => {
+      if (payload.error !== "") return;
+      const USERID = "hola"; // get from app
+      let selfNickname = "";
+      let otherNickname = "";
+      players.forEach((player) => {
+        if (player.userId === USERID) selfNickname = player.nickname;
+        else otherNickname = player.nickname;
+      });
+      setDualModalVisible(false);
+      navigation.navigate("DualGame", {
+        selfNickname: selfNickname,
+        otherNickname: otherNickname,
+      });
+    });
+
+    return () => {
+      socket.off("players");
+      socket.off("create-invite-code");
+      socket.off("join-invite-code");
+      socket.off("start-game");
+    };
+  }, []);
 
   return (
     <View style={styles.container}>

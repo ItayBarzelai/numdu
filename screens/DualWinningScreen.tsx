@@ -5,26 +5,31 @@ import COLORS from "../colors";
 import PrimaryButton from "../components/buttons/PrimaryButton";
 import ICONS from "../icons";
 
-const DualWinningScreen = () => {
-  const [winners, setWinners] = useState([]);
-  const [message, setMessage] = useState("");
+const DualWinningScreen = ({ route, navigation }: any) => {
+  const winners = route.params;
 
-  const handleQuit = () => {};
+  console.log(winners);
+
+  const getMessage = (winners: any) => {
+    if (winners.length === 2) return "it's a tie!";
+    else if (winners[0].userId === "hola") return "you won!";
+    else return `${winners[0].nickname} won!`;
+  };
+
+  const handleQuit = () => {
+    console.log("a");
+    navigation.reset({
+      index: 0,
+      routes: [{ name: "Home" }],
+    });
+  };
   const handlePlayAgain = () => {};
   const handleAddFriend = () => {};
-
-  // add when websocket sends winners:
-  // - message = "you won"
-  // - message = "cheese23 won"
-  // - message = "it's a tie"
-  useEffect(() => {
-    setMessage("You won");
-  }, []);
 
   return (
     <View style={styles.container}>
       <BackArrow onPress={handleQuit} />
-      <Text style={styles.title}>{message}</Text>
+      <Text style={styles.title}>{getMessage(winners)}</Text>
       <View style={styles.buttonsContainer}>
         <PrimaryButton
           text="Play Again"

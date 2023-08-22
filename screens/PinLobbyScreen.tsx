@@ -3,12 +3,18 @@ import React, { useContext, useEffect, useState } from "react";
 import ExitModal from "../components/modals/ExitModal";
 import BackArrow from "../components/BackArrow";
 import COLORS from "../colors";
-import { SocketContext } from "../socketContext";
 
-  const socket = useContext(SocketContext);
+const PinLobbyScreen = ({ route, navigation }: any) => {
+  const gameCode = route.params.code;
   const [exitModalVisible, setExitModalVisible] = useState(false);
 
-  const handleQuit = () => {};
+  const handleQuit = () => {
+    // send server quit
+    navigation.reset({
+      index: 0,
+      routes: [{ name: "Home" }],
+    });
+  };
   const handleGoBack = () => {
     setExitModalVisible(true);
   };

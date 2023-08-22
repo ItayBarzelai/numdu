@@ -1,11 +1,11 @@
-import { StyleSheet, Text, View, Image } from "react-native";
 import React, { useContext, useState } from "react";
-import BlankModal from "./BlankModal";
-import ButtonGroup from "../ButtonGroup";
-import PrimaryButton from "../buttons/PrimaryButton";
+import { Image, StyleSheet, View } from "react-native";
 import COLORS from "../../colors";
-import Input from "../Input";
 import { SocketContext } from "../../socketContext";
+import ButtonGroup from "../ButtonGroup";
+import Input from "../Input";
+import PrimaryButton from "../buttons/PrimaryButton";
+import BlankModal from "./BlankModal";
 
 interface Props {
   visible: boolean;
@@ -23,8 +23,17 @@ const DualModal = ({ visible, setVisible }: Props) => {
   const [selected, setSelected] = useState(options[0].value);
   const [code, setCode] = useState("");
 
-  const handleStart = () => {};
-  const handleJoin = () => {};
+  const handleStart = () => {
+    socket.emit("create-invite-code", {
+      userId: "hola",
+    });
+  };
+  const handleJoin = () => {
+    socket.emit("join-invite-code", {
+      userId: "hola2",
+      code: parseInt(code),
+    });
+  };
 
   return (
     <BlankModal visible={visible} setVisible={setVisible}>
