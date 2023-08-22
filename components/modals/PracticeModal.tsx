@@ -41,9 +41,9 @@ const PracticeModal = ({ visible, setVisible }: Props) => {
           selected={selectedTime}
           setSelected={setSelectedTime}
         />
+        <View style={styles.divider} />
+        <PrimaryButton text="START" onPress={handleStart} />
       </View>
-      <View style={styles.divider} />
-      <PrimaryButton text="START" onPress={handleStart} />
     </BlankModal>
   );
 };
@@ -54,6 +54,8 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     gap: 10,
+    display: "flex",
+    alignItems: "stretch",
   },
   divider: {
     backgroundColor: COLORS.SECONDARY,

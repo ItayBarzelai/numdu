@@ -40,12 +40,12 @@ export default ButtonGroup;
 
 const styles = StyleSheet.create({
   container: {
+    height: 60,
+    minWidth: "70%",
     backgroundColor: COLORS.SECONDARY,
     display: "flex",
     flexDirection: "row",
     borderRadius: 10,
-    width: "100%",
-    height: 60,
     justifyContent: "space-around",
     alignItems: "center",
   },
